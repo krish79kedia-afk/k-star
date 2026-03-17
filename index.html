@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Star Registry</title>
+
+<script src="https://aladin.u-strasbg.fr/AladinLite/api/v2/latest/aladin.min.js"></script>
+<link rel="stylesheet" href="https://aladin.u-strasbg.fr/AladinLite/api/v2/latest/aladin.min.css" />
+
+<style>
+body {
+background:black;
+color:white;
+text-align:center;
+font-family:Arial;
+}
+
+#aladin-lite-div {
+width:90%;
+height:500px;
+margin:auto;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>⭐ Interstellar Star Registry</h1>
+
+<h2>KAASHVI</h2>
+
+<p>This celestial star has been dedicated to KAASHVI</p>
+
+<div id="aladin-lite-div"></div>
+
+<script>
+
+var aladin = A.aladin('#aladin-lite-div', {
+survey: "P/DSS2/color",
+fov:0.3,
+target: "20:41:25 +45:16:49"
+});
+
+var catalog = A.catalog({name: 'Kaashvi Star'});
+
+catalog.addSources([
+A.source(310.354,45.280,{name:'KAASHVI'})
+]);
+
+aladin.addCatalog(catalog);
+
+</script>
+
+</body>
+</html>
