@@ -1,54 +1,117 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Star Registry</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interstellar Star Registry</title>
 
-<script src="https://aladin.u-strasbg.fr/AladinLite/api/v2/latest/aladin.min.js"></script>
-<link rel="stylesheet" href="https://aladin.u-strasbg.fr/AladinLite/api/v2/latest/aladin.min.css" />
+<script src="https://aladin.u-strasbg.fr/AladinLite/api/v3/latest/aladin.min.js"></script>
+<link rel="stylesheet" href="https://aladin.u-strasbg.fr/AladinLite/api/v3/latest/aladin.min.css"/>
 
 <style>
 body {
-background:black;
-color:white;
-text-align:center;
-font-family:Arial;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: radial-gradient(circle at top, #020111, #000000);
+  color: white;
+  text-align: center;
 }
 
+/* HEADER */
+.header {
+  padding: 30px 20px 10px;
+}
+
+.header h1 {
+  font-size: 28px;
+  letter-spacing: 2px;
+}
+
+.name {
+  font-size: 32px;
+  margin-top: 10px;
+  color: #00eaff;
+  text-shadow: 0 0 10px #00eaff, 0 0 25px #00eaff;
+}
+
+/* CERTIFICATE CARD */
+.card {
+  width: 90%;
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 25px rgba(0, 234, 255, 0.15);
+}
+
+/* SKY VIEW */
 #aladin-lite-div {
-width:90%;
-height:500px;
-margin:auto;
+  width: 95%;
+  height: 500px;
+  margin: 20px auto;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(255,255,255,0.2);
+}
+
+/* FOOTER */
+.footer {
+  font-size: 12px;
+  opacity: 0.6;
+  margin-bottom: 20px;
 }
 </style>
-
 </head>
 
 <body>
 
-<h1>⭐ Interstellar Star Registry</h1>
+<div class="header">
+  <h1>⭐ Interstellar Star Registry</h1>
+  <div class="name">KAASHVI</div>
+</div>
 
-<h2>KAASHVI</h2>
-
-<p>This celestial star has been dedicated to KAASHVI</p>
+<div class="card">
+  <p>This celestial star has been officially dedicated to</p>
+  <h2>KAASHVI</h2>
+  <p>Located in a distant region of the universe, this star now carries your name among the cosmos.</p>
+</div>
 
 <div id="aladin-lite-div"></div>
 
+<div class="footer">
+  Explore the sky, zoom in, and discover your star ✨
+</div>
+
 <script>
+A.init.then(() => {
 
-var aladin = A.aladin('#aladin-lite-div', {
-survey: "P/DSS2/color",
-fov:0.3,
-target: "20:41:25 +45:16:49"
+  const aladin = A.aladin('#aladin-lite-div', {
+    survey: "P/DSS2/color",
+    fov: 0.2,
+    target: "20:41:25 +45:16:49",
+    showFullscreenControl: true,
+    showLayersControl: true,
+    showGotoControl: true
+  });
+
+  const catalog = A.catalog({
+    name: "Kaashvi Star",
+    sourceSize: 14,
+    color: "#00eaff"
+  });
+
+  const star = A.source(310.354, 45.280, {
+    name: "⭐ KAASHVI",
+    popupTitle: "KAASHVI",
+    popupDesc: "A star dedicated to you ✨"
+  });
+
+  catalog.addSources([star]);
+  aladin.addCatalog(catalog);
+
 });
-
-var catalog = A.catalog({name: 'Kaashvi Star'});
-
-catalog.addSources([
-A.source(310.354,45.280,{name:'KAASHVI'})
-]);
-
-aladin.addCatalog(catalog);
-
 </script>
 
 </body>
